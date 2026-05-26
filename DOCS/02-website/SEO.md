@@ -107,11 +107,13 @@ Upload `public/logo10.png` under repository **Social preview**.
 
 1. Go to [Google Search Console](https://search.google.com/search-console)
 2. Add property: **URL prefix** → `https://delta-innovations-website.vercel.app`
-3. Verify ownership:
-   - **HTML tag** — add meta tag to `index.html` `<head>`:
+3. Verify ownership (both methods are configured in this repo):
+   - **HTML tag** — in `index.html` `<head>`:
      ```html
-     <meta name="google-site-verification" content="YOUR_TOKEN_HERE" />
+     <meta name="google-site-verification" content="vTRXpdx3a-8Mhs_YKCtk0XdsJUB3xzVi-k1CMoDF08s" />
      ```
+   - **HTML file** — `public/googlec3d73e12911e409b.html` →  
+     `https://delta-innovations-website.vercel.app/googlec3d73e12911e409b.html`
    - Or use DNS verification when on custom domain
 4. Submit sitemap: `https://delta-innovations-website.vercel.app/sitemap.xml`
 5. **URL inspection** → request indexing for:
