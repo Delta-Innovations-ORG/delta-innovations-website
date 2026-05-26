@@ -115,8 +115,15 @@ Upload `public/logo10.png` under repository **Social preview**.
    - **HTML file** — `public/googlec3d73e12911e409b.html` →  
      `https://delta-innovations-website.vercel.app/googlec3d73e12911e409b.html`
    - Or use DNS verification when on custom domain
-4. Submit sitemap: `https://delta-innovations-website.vercel.app/sitemap.xml`
-5. **URL inspection** → request indexing for:
+4. Submit **only** this sitemap (full URL, not `/contact` or verification HTML):
+   - `https://delta-innovations-website.vercel.app/sitemap.xml`
+   - In GSC **Sitemaps**, enter exactly: `sitemap.xml` → **Submit**
+5. If status stays **Couldn't fetch** or **Sitemap could not be read** after deploy:
+   - Open `https://delta-innovations-website.vercel.app/sitemap.xml` in an **Incognito** window (must show XML, not the React app).
+   - In GSC, open the `/sitemap.xml` row → **⋮** → **Delete sitemap**, wait 1–2 minutes, submit `sitemap.xml` again.
+   - Status can take **24–48 hours** to change from red to **Success** after the server returns stable `200` + `Content-Type: application/xml`.
+   - Do **not** submit `/services`, `/contact`, or `googlec3d73e12911e409b.html` in the Sitemaps section — use **URL inspection** for individual pages.
+6. **URL inspection** → request indexing for:
    - `/`
    - `/services`
    - `/contact`
