@@ -129,6 +129,21 @@ Upload `public/logo10.png` under repository **Social preview**.
    - `/contact`
    - `/about`
 
+### GSC “Couldn't fetch” — root cause (May 2026)
+
+| Symptom in GSC | What Googlebot was getting | Fix |
+|----------------|---------------------------|-----|
+| **Couldn't fetch**, Type **Unknown**, Last read empty | **401/403** from **Vercel Deployment Protection** (auth wall), or intermittent **5xx** while misconfigured | Turn **Deployment Protection** off for Production (Vercel → Project → Settings → Deployment Protection). Redeploy. |
+| **Sitemap is HTML** | SPA rewrite sent `index.html` instead of `public/sitemap.xml` | [`vercel.json`](../../vercel.json) uses `routes`: `{ "handle": "filesystem" }` then SPA fallback — static `dist/sitemap.xml` is always served first. Build runs `scripts/generate-sitemap.mjs` so `dist/sitemap.xml` exists. |
+| Still red after server is fixed | GSC cached the failed fetch | Delete sitemap in GSC → wait 1–2 min → submit **`sitemap.xml` only** again. |
+
+**Verify before resubmitting** (curl or browser Incognito):
+
+- `GET /sitemap.xml` → **200**, `Content-Type: application/xml`, body starts with `<?xml` (not `<!DOCTYPE html>`).
+- `GET /robots.txt` → **200**, includes `Sitemap: https://delta-innovations-website.vercel.app/sitemap.xml`.
+
+Custom domain (`deltainnovations.net`) must resolve in DNS and be assigned in Vercel before using that host in GSC or sitemap `<loc>` URLs.
+
 ---
 
 ## Off-page SEO (ranking growth)

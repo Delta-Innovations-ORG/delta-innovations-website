@@ -20,10 +20,8 @@
       "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/((?!sitemap\\.xml$|robots\\.txt$|googlec3d73e12911e409b\\.html$|.*\\.[a-zA-Z0-9]+$).*)",
-      "destination": "/index.html"
-    }
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

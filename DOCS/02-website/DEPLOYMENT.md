@@ -45,7 +45,7 @@ sequenceDiagram
 | Framework | Vite |
 | Build | `npm run build` |
 | Output | `dist` |
-| SPA rewrites | Non-file routes → `index.html` (React Router: `/about`, `/contact`, policies, etc.) |
+| SPA routing | `vercel.json` `routes`: serve `dist` static files first, then `/index.html` for React Router (`/about`, `/contact`, etc.) |
 
 ---
 
