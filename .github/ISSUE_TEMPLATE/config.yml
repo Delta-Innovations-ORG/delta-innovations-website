@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Delta Innovations — Business inquiry
+    url: https://deltainnovations.net/contact
+    about: For projects and partnerships, use the official contact form.
+  - name: Documentation
+    url: https://github.com/Delta-Innovations-ORG/delta-innovations-website/tree/main/DOCS
+    about: Read the DOCS hub for setup, deployment, and company info.
