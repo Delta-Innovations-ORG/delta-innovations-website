@@ -1,13 +1,11 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react';
-import { usePageTitle } from '../hooks/usePageTitle';
 import { PageHero } from '../components/ui/PageHero';
 import { ContactForm } from '../components/contact/ContactForm';
 import { siteConfig } from '../content/siteConfig';
 import { toWhatsAppUrl } from '../utils/phone';
 
 export function ContactPage() {
-  usePageTitle('Contact');
   const { pakistan, egypt } = siteConfig.phones;
 
   return (

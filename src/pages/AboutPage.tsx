@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { usePageTitle } from '../hooks/usePageTitle';
 import { PageHero } from '../components/ui/PageHero';
 import { aboutContent, siteConfig } from '../content/siteConfig';
 import { Button } from '../components/ui/Button';
@@ -8,8 +7,6 @@ import { HoverGlowCard } from '../components/effects/HoverGlowCard';
 import { Reveal } from '../components/motion/Reveal';
 
 export function AboutPage() {
-  usePageTitle('About');
-
   return (
     <>
       <PageHero

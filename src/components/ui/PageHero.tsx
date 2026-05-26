@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { OrbitalBackground } from '../effects/OrbitalBackground';
 import { Reveal } from '../motion/Reveal';
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { usePageTitle } from '../hooks/usePageTitle';
 import { PageHero } from '../components/ui/PageHero';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { ServiceCard } from '../components/ui/ServiceCard';
@@ -7,8 +6,6 @@ import { services } from '../content/services';
 import { Button } from '../components/ui/Button';
 
 export function ServicesPage() {
-  usePageTitle('Services');
-
   return (
     <>
       <PageHero

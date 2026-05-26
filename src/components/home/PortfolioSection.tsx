@@ -52,6 +52,7 @@ function PortfolioCard({ item }: { item: PortfolioItem }) {
       <article
         ref={ref}
         data-card
+        aria-label={`${item.title} — ${item.category} portfolio project by Delta Innovations`}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
         style={{ transform, transition: 'transform 0.15s ease-out' }}

@@ -50,7 +50,7 @@ export function Footer() {
             <Link to="/" className="group inline-flex items-center gap-2.5">
               <img
                 src={siteConfig.logo}
-                alt=""
+                alt={siteConfig.name}
                 className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
               <div className="leading-tight">

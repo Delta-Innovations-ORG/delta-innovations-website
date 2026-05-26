@@ -19,7 +19,7 @@ export const siteConfig = {
   locations: ['Pakistan', 'Egypt'],
   social: {
     linkedin: 'https://www.linkedin.com/company/delta-innovations',
-    github: 'https://github.com/delta-innovations',
+    github: 'https://github.com/Delta-Innovations-ORG',
   },
 };
 

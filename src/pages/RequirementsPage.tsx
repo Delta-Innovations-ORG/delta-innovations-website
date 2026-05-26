@@ -1,12 +1,9 @@
 import React from 'react';
-import { usePageTitle } from '../hooks/usePageTitle';
 import { PolicyLayout } from '../components/ui/PolicyLayout';
 import { requirementsPolicy } from '../content/policies';
 import { Button } from '../components/ui/Button';
 
 export function RequirementsPage() {
-  usePageTitle('Project Requirements');
-
   return (
     <>
       <PolicyLayout policy={requirementsPolicy} />

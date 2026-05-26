@@ -24,6 +24,7 @@
 | [Brand & positioning](01-company/BRAND_AND_POSITIONING.md) | Tagline, voice, messaging |
 | [Getting started](03-development/GETTING_STARTED.md) | Install, run, env setup |
 | [Deployment & CI/CD](02-website/DEPLOYMENT.md) | Push to `main` → auto Vercel live deploy |
+| [SEO guide](02-website/SEO.md) | Meta tags, sitemap, GSC, GitHub topics |
 | [GitHub repo setup](05-github-and-growth/GITHUB_REPO_SETUP_GUIDE.md) | Publish & optimize this repository |
 
 ---
@@ -50,6 +51,7 @@
 | [CUSTOM_DELTA_CURSOR.md](02-website/CUSTOM_DELTA_CURSOR.md) | Custom cursor system |
 | [EMAILJS_SETUP.md](02-website/EMAILJS_SETUP.md) | Contact form email integration |
 | [DEPLOYMENT.md](02-website/DEPLOYMENT.md) | CI/CD, Vercel auto-deploy, rollback |
+| [SEO.md](02-website/SEO.md) | Advanced SEO, robots, sitemap, JSON-LD, GSC |
 | [ENVIRONMENT_VARIABLES.md](02-website/ENVIRONMENT_VARIABLES.md) | Env vars reference |
 
 ---

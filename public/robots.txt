@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://delta-innovations-website.vercel.app/sitemap.xml
