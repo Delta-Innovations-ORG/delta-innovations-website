@@ -134,6 +134,7 @@ Upload `public/logo10.png` under repository **Social preview**.
 | Symptom in GSC | What Googlebot was getting | Fix |
 |----------------|---------------------------|-----|
 | **Sitemap could not be read**, Last read has a date, 0 pages | Google fetched but got **HTML** or invalid XML (SPA rewrite / auth page) | Delete sitemap in GSC → redeploy → verify with `npm run verify:seo` → resubmit `sitemap.xml` only |
+| **Couldn't fetch**, Last read **empty** | Google never got a response (protection, timeout, or submitted before deploy finished) | Wait for Vercel **Ready**, run `npm run verify:seo`, delete + resubmit in GSC |
 | **Couldn't fetch**, Type **Unknown**, Last read empty | **401/403** from **Vercel Deployment Protection** (auth wall), or intermittent **5xx** while misconfigured | Turn **Deployment Protection** off for Production (Vercel → Project → Settings → Deployment Protection). Redeploy. |
 | **Sitemap is HTML** | SPA rewrite sent `index.html` instead of `public/sitemap.xml` | [`vercel.json`](../../vercel.json) routes `/sitemap.xml` → [`api/sitemap.xml.ts`](../../api/sitemap.xml.ts) (serverless XML) plus filesystem fallback. Build runs `scripts/generate-sitemap.mjs`. |
 | Still red after server is fixed | GSC cached the failed fetch | Delete sitemap in GSC → wait 1–2 min → submit **`sitemap.xml` only** again. |

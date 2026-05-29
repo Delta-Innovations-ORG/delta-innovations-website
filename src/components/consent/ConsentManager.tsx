@@ -7,7 +7,7 @@ export function ConsentManager() {
 
   return (
     <>
-      {analyticsAllowed ? <AnalyticsLoader /> : null}
+      <AnalyticsLoader enabled={analyticsAllowed} />
       {showBanner ? <CookieConsentBanner onAccept={accept} onDecline={decline} /> : null}
     </>
   );

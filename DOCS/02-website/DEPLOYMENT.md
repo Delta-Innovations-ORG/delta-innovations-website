@@ -67,9 +67,10 @@ Open your project in [vercel.com/dashboard](https://vercel.com/dashboard):
 
 ### Analytics & cookie consent
 
-- **Vercel dashboard:** Project → **Analytics** → turn **off** automatic Web Analytics script injection (otherwise GA loads before the consent banner).
-- **In app:** `ConsentManager` loads `@vercel/analytics` and `@vercel/speed-insights` only after the user clicks **Accept analytics**.
-- Console `ERR_BLOCKED_BY_CLIENT` for `google-analytics.com` or `speed-insights/script.js` is normal when an ad-blocker is active or analytics was declined.
+- **Vercel dashboard (required):** Project → **Analytics** → **disable automatic Web Analytics script injection**. If left on, Google Analytics (`G-03XW3FWG7L`) loads before the consent banner and causes `ERR_BLOCKED_BY_CLIENT` with ad-blockers.
+- **In app:** `ConsentManager` calls `inject()` / `injectSpeedInsights()` only after **Accept analytics** (idle-deferred, `debug: false`).
+- **Ad-blockers:** After accepting cookies, uBlock/Brave may still block `/_vercel/insights/script.js` — that is client-side, not a site bug.
+- **Reset consent:** Clear `localStorage` key `delta_cookie_consent` or use browser site data clear to see the banner again.
 
 ### Environment variables
 

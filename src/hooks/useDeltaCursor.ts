@@ -5,6 +5,8 @@ export type CursorMode = 'default' | 'interactive' | 'text';
 const LERP_MAIN = 0.18;
 const LERP_TRAIL = 0.08;
 const LERP_MAIN_REDUCED = 0.45;
+const HIT_TEST_MIN_PX = 14;
+const HIT_TEST_MIN_FRAMES = 4;
 
 function lerp(current: number, target: number, factor: number) {
   return current + (target - current) * factor;
@@ -49,12 +51,12 @@ function applyCursorTransform(el: HTMLElement | null, x: number, y: number, opac
 export function useDeltaCursorController() {
   const [enabled, setEnabled] = useState(readCursorEnabled);
   const [mode, setMode] = useState<CursorMode>('default');
-  const [visible, setVisible] = useState(false);
 
   const mainElRef = useRef<HTMLDivElement | null>(null);
   const trailElRef = useRef<HTMLDivElement | null>(null);
   const targetRef = useRef({ x: 0, y: 0 });
   const pointerRef = useRef({ x: 0, y: 0 });
+  const lastHitRef = useRef({ x: 0, y: 0 });
   const mainRef = useRef({ x: 0, y: 0 });
   const trailRef = useRef({ x: 0, y: 0 });
   const visibleRef = useRef(false);
@@ -62,6 +64,7 @@ export function useDeltaCursorController() {
   const initializedRef = useRef(false);
   const reducedMotionRef = useRef(false);
   const pendingHitTestRef = useRef(false);
+  const hitTestFrameSkipRef = useRef(0);
   const modeRef = useRef<CursorMode>('default');
 
   useEffect(() => {
@@ -80,17 +83,33 @@ export function useDeltaCursorController() {
     };
   }, []);
 
+  const runHitTest = useCallback(() => {
+    const dx = pointerRef.current.x - lastHitRef.current.x;
+    const dy = pointerRef.current.y - lastHitRef.current.y;
+    if (dx * dx + dy * dy < HIT_TEST_MIN_PX * HIT_TEST_MIN_PX) return;
+
+    lastHitRef.current = { ...pointerRef.current };
+    const hit = document.elementFromPoint(pointerRef.current.x, pointerRef.current.y);
+    const nextMode = resolveCursorMode(hit);
+    if (nextMode !== modeRef.current) {
+      modeRef.current = nextMode;
+      setMode(nextMode);
+      if (mainElRef.current) {
+        mainElRef.current.dataset.cursorMode = nextMode;
+      }
+    }
+  }, []);
+
   const tick = useCallback(() => {
     const factor = reducedMotionRef.current ? LERP_MAIN_REDUCED : LERP_MAIN;
     const trailFactor = reducedMotionRef.current ? LERP_MAIN_REDUCED : LERP_TRAIL;
 
     if (pendingHitTestRef.current) {
-      pendingHitTestRef.current = false;
-      const hit = document.elementFromPoint(pointerRef.current.x, pointerRef.current.y);
-      const nextMode = resolveCursorMode(hit);
-      if (nextMode !== modeRef.current) {
-        modeRef.current = nextMode;
-        setMode(nextMode);
+      hitTestFrameSkipRef.current += 1;
+      if (hitTestFrameSkipRef.current >= HIT_TEST_MIN_FRAMES) {
+        hitTestFrameSkipRef.current = 0;
+        pendingHitTestRef.current = false;
+        runHitTest();
       }
     }
 
@@ -104,13 +123,12 @@ export function useDeltaCursorController() {
     applyCursorTransform(trailElRef.current, trailRef.current.x, trailRef.current.y, opacity);
 
     rafRef.current = requestAnimationFrame(tick);
-  }, []);
+  }, [runHitTest]);
 
   useEffect(() => {
     if (!enabled) {
       initializedRef.current = false;
       visibleRef.current = false;
-      setVisible(false);
       return;
     }
 
@@ -129,17 +147,15 @@ export function useDeltaCursorController() {
         mainRef.current = { x, y };
         trailRef.current = { x, y };
         initializedRef.current = true;
+        lastHitRef.current = { x, y };
+        runHitTest();
       }
 
-      if (!visibleRef.current) {
-        visibleRef.current = true;
-        setVisible(true);
-      }
+      visibleRef.current = true;
     };
 
     const onDocumentLeave = () => {
       visibleRef.current = false;
-      setVisible(false);
     };
 
     window.addEventListener('mousemove', onMove, { passive: true });
@@ -152,7 +168,7 @@ export function useDeltaCursorController() {
       document.documentElement.removeEventListener('mouseleave', onDocumentLeave);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [enabled, tick]);
+  }, [enabled, tick, runHitTest]);
 
   useEffect(() => {
     if (!enabled) {
@@ -163,5 +179,5 @@ export function useDeltaCursorController() {
     return () => document.body.classList.remove('delta-cursor-on');
   }, [enabled]);
 
-  return { enabled, mode, visible, mainElRef, trailElRef };
+  return { enabled, mode, mainElRef, trailElRef };
 }

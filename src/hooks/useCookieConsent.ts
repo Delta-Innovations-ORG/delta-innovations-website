@@ -33,5 +33,18 @@ export function useCookieConsent() {
     setShowBanner(false);
   }, []);
 
-  return { status, showBanner, accept, decline, analyticsAllowed: status === 'accepted' };
+  const resetConsent = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY);
+    setStatus('unknown');
+    setShowBanner(true);
+  }, []);
+
+  return {
+    status,
+    showBanner,
+    accept,
+    decline,
+    resetConsent,
+    analyticsAllowed: status === 'accepted',
+  };
 }

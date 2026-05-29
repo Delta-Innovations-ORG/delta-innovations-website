@@ -1,5 +1,4 @@
 import { createPortal } from 'react-dom';
-import { AnimatePresence } from 'framer-motion';
 import { useDeltaCursorController } from '../../hooks/useDeltaCursor';
 import { DeltaCursorShape, NexusDeltaTrailShape } from './DeltaCursorShapes';
 
@@ -20,9 +19,7 @@ export function DeltaCursor() {
         data-cursor-mode={mode}
         style={{ opacity: 0 }}
       >
-        <AnimatePresence mode="sync" initial={false}>
-          <DeltaCursorShape key={mode} mode={mode} />
-        </AnimatePresence>
+        <DeltaCursorShape mode={mode} />
       </div>
     </div>
   );

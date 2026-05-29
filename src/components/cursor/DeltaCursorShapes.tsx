@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import type { CursorMode } from '../../hooks/useDeltaCursor';
 import { cursorColors } from './cursorColors';
 
@@ -129,14 +128,8 @@ export function DeltaCursorShape({ mode }: DeltaCursorShapeProps) {
   const Shape = shapeMap[mode];
 
   return (
-    <motion.div
-      initial={false}
-      animate={{ opacity: 1, scale: mode === 'interactive' ? 1.25 : 1 }}
-      exit={{ opacity: 0, scale: 0.85 }}
-      transition={{ duration: 0.15, ease: 'easeOut' }}
-      className="delta-cursor-shape-wrap"
-    >
+    <div className="delta-cursor-shape-wrap" data-cursor-shape={mode}>
       <Shape />
-    </motion.div>
+    </div>
   );
 }

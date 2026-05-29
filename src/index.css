@@ -276,6 +276,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.15s ease-out;
+  }
+
+  .delta-cursor-main[data-cursor-mode='interactive'] .delta-cursor-shape-wrap {
+    transform: scale(1.25);
   }
 
   .delta-cursor-ring {
