@@ -62,7 +62,14 @@ Open your project in [vercel.com/dashboard](https://vercel.com/dashboard):
 | **Output directory** | `dist` |
 | **Install command** | `npm install` |
 | **Domains** | `deltainnovations.net` assigned to **Production** |
-| **Speed Insights** | Enabled (matches `SpeedInsights` in `src/App.tsx`) |
+| **Speed Insights** | Enabled in code via consent-gated `SpeedInsights` (see below) |
+| **Web Analytics** | Disable **automatic script injection** in Vercel → Analytics; use `@vercel/analytics` in app after cookie consent |
+
+### Analytics & cookie consent
+
+- **Vercel dashboard:** Project → **Analytics** → turn **off** automatic Web Analytics script injection (otherwise GA loads before the consent banner).
+- **In app:** `ConsentManager` loads `@vercel/analytics` and `@vercel/speed-insights` only after the user clicks **Accept analytics**.
+- Console `ERR_BLOCKED_BY_CLIENT` for `google-analytics.com` or `speed-insights/script.js` is normal when an ad-blocker is active or analytics was declined.
 
 ### Environment variables
 

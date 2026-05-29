@@ -4,29 +4,21 @@ import { useDeltaCursorController } from '../../hooks/useDeltaCursor';
 import { DeltaCursorShape, NexusDeltaTrailShape } from './DeltaCursorShapes';
 
 export function DeltaCursor() {
-  const { enabled, mode, visible, mainPos, trailPos } = useDeltaCursorController();
+  const { enabled, mode, mainElRef, trailElRef } = useDeltaCursorController();
 
   if (!enabled) return null;
 
   const layer = (
     <div className="delta-cursor-layer" aria-hidden>
-      <div
-        className="delta-cursor-trail"
-        style={{
-          transform: `translate3d(${trailPos.x}px, ${trailPos.y}px, 0) translate(-50%, -50%)`,
-          opacity: visible ? 1 : 0,
-        }}
-      >
+      <div ref={trailElRef} className="delta-cursor-trail" style={{ opacity: 0 }}>
         <NexusDeltaTrailShape className="delta-cursor-trail-svg" />
       </div>
 
       <div
+        ref={mainElRef}
         className="delta-cursor-main"
         data-cursor-mode={mode}
-        style={{
-          transform: `translate3d(${mainPos.x}px, ${mainPos.y}px, 0) translate(-50%, -50%)`,
-          opacity: visible ? 1 : 0,
-        }}
+        style={{ opacity: 0 }}
       >
         <AnimatePresence mode="sync" initial={false}>
           <DeltaCursorShape key={mode} mode={mode} />

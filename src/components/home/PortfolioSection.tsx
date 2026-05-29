@@ -117,18 +117,33 @@ export function PortfolioSection() {
     const el = scrollRef.current;
     if (!el) return;
 
-    const tick = () => {
-      el.scrollLeft += 1.2;
+    let rafId = 0;
+    let lastTime = performance.now();
+    const speedPxPerMs = 1.2 / 20;
+
+    const tick = (now: number) => {
+      if (document.visibilityState === 'hidden') {
+        lastTime = now;
+        rafId = requestAnimationFrame(tick);
+        return;
+      }
+
+      const delta = now - lastTime;
+      lastTime = now;
+      el.scrollLeft += speedPxPerMs * delta;
+
       if (loopItems) {
         const half = el.scrollWidth / 2;
         if (half > 0 && el.scrollLeft >= half) el.scrollLeft = 0;
       } else if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
         el.scrollLeft = 0;
       }
+
+      rafId = requestAnimationFrame(tick);
     };
 
-    const id = window.setInterval(tick, 20);
-    return () => window.clearInterval(id);
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, [isPaused, loopItems, displayItems.length]);
 
   const scrollByCard = useCallback((direction: -1 | 1) => {

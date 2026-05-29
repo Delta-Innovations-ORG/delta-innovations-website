@@ -277,19 +277,19 @@ export const cookiePolicy: PolicyPage = {
       title: 'How We Use Cookies',
       content: [
         'Essential cookies required for basic site functionality',
-        'Analytics cookies to understand traffic and improve user experience (if enabled)',
-        'Preference cookies to remember your settings',
+        'Analytics cookies (Vercel Web Analytics and Speed Insights) load only after you click Accept on the cookie banner',
+        'Preference cookies to remember your settings, including your analytics consent choice',
       ],
     },
     {
       title: 'Third-Party Cookies',
       content:
-        'We may use third-party services such as analytics or embedded content. These providers may set their own cookies subject to their privacy policies.',
+        'If you accept analytics, Vercel may set cookies or use similar technologies to measure traffic and performance. Declining analytics prevents those scripts from loading. Embedded content from other providers may set their own cookies subject to their privacy policies.',
     },
     {
       title: 'Managing Cookies',
       content:
-        'You can control or delete cookies through your browser settings. Disabling cookies may affect certain website features.',
+        'You can accept or decline analytics cookies using the banner on your first visit. You can also control or delete cookies through your browser settings. Disabling cookies may affect certain website features.',
     },
     {
       title: 'Contact',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { SpeedInsights } from '@vercel/speed-insights/react';
+import { ConsentManager } from './components/consent/ConsentManager';
 import { MainLayout } from './layouts/MainLayout';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -18,7 +18,7 @@ import { ChangeRequestPage } from './pages/ChangeRequestPage';
 export function App() {
   return (
     <BrowserRouter>
-      <SpeedInsights />
+      <ConsentManager />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
