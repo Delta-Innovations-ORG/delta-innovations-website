@@ -9,6 +9,10 @@ const routes = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
   { path: '/about', changefreq: 'monthly', priority: '0.8' },
   { path: '/services', changefreq: 'monthly', priority: '0.9' },
+  { path: '/marketplace', changefreq: 'weekly', priority: '0.9' },
+  { path: '/team', changefreq: 'monthly', priority: '0.7' },
+  { path: '/reviews', changefreq: 'monthly', priority: '0.7' },
+  { path: '/insights', changefreq: 'weekly', priority: '0.8' },
   { path: '/contact', changefreq: 'monthly', priority: '0.9' },
   { path: '/requirements', changefreq: 'monthly', priority: '0.7' },
 ];
