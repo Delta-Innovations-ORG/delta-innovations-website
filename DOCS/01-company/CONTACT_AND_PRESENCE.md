@@ -22,10 +22,13 @@ Pakistan · Egypt
 
 | Platform | URL |
 |----------|-----|
-| Website | https://deltainnovations.net/ |
+| Website (live) | https://delta-innovations-website.vercel.app |
+| Website (custom domain, when DNS live) | https://deltainnovations.net/ |
 | GitHub org | https://github.com/Delta-Innovations-ORG |
-| LinkedIn | https://www.linkedin.com/company/delta-innovations |
+| LinkedIn | https://www.linkedin.com/company/deltainnovations |
 | This repository | https://github.com/Delta-Innovations-ORG/delta-innovations-website |
+
+> **LinkedIn:** Use the Vercel URL on the company page Website field until the custom domain resolves. See [LinkedIn page guide](../05-github-and-growth/LINKEDIN_PAGE_GUIDE.md).
 
 ## Website contact routes
 

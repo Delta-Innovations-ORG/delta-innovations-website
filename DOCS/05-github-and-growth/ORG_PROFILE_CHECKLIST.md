@@ -26,7 +26,7 @@ For **Delta-Innovations-ORG** on GitHub.
 ## Brand consistency
 
 - Use tagline: *Engineering digital products with clarity, security, and scale.*  
-- Link LinkedIn: https://www.linkedin.com/company/delta-innovations  
+- Link LinkedIn: https://www.linkedin.com/company/deltainnovations  
 - Logo: same as `public/logo10.png`  
 
 ## Trust assets to add over time

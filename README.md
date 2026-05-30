@@ -51,7 +51,7 @@
 
 **Your trusted partner for building scalable, secure digital products**
 
-[Website](https://deltainnovations.net/) · [Start a Project](https://deltainnovations.net/contact) · [LinkedIn](https://www.linkedin.com/company/delta-innovations) · [GitHub Org](https://github.com/Delta-Innovations-ORG)
+[Website](https://deltainnovations.net/) · [Start a Project](https://deltainnovations.net/contact) · [LinkedIn](https://www.linkedin.com/company/deltainnovations) · [GitHub Org](https://github.com/Delta-Innovations-ORG)
 
 </div>
 
@@ -180,7 +180,7 @@ Ready to build something scalable and secure?
 | **Projects** | [insider.daltainnovations@gmail.com](mailto:insider.daltainnovations@gmail.com) |
 | **Pakistan** | +923322795419 (Call / WhatsApp) |
 | **Egypt** | +201002637979 (Call) · +201034025254 (WhatsApp) |
-| **LinkedIn** | [linkedin.com/company/delta-innovations](https://www.linkedin.com/company/delta-innovations) |
+| **LinkedIn** | [linkedin.com/company/deltainnovations](https://www.linkedin.com/company/deltainnovations) |
 | **GitHub** | [github.com/Delta-Innovations-ORG](https://github.com/Delta-Innovations-ORG) |
 
 ---

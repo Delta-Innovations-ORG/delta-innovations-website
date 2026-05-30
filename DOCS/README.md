@@ -53,6 +53,10 @@
 | [DEPLOYMENT.md](02-website/DEPLOYMENT.md) | CI/CD, Vercel auto-deploy, rollback |
 | [SEO.md](02-website/SEO.md) | Advanced SEO, robots, sitemap, JSON-LD, GSC |
 | [ENVIRONMENT_VARIABLES.md](02-website/ENVIRONMENT_VARIABLES.md) | Env vars reference |
+| [PHASE2_ARCHITECTURE.md](02-website/PHASE2_ARCHITECTURE.md) | Phase 2 routes, APIs, integrations |
+| [CLERK_SETUP.md](02-website/CLERK_SETUP.md) | Clerk auth setup |
+| [TAWK_SETUP.md](02-website/TAWK_SETUP.md) | Tawk.to live chat |
+| [CSP_AND_THIRD_PARTIES.md](02-website/CSP_AND_THIRD_PARTIES.md) | CSP headers, Tawk domains, console troubleshooting |
 
 ---
 
@@ -81,6 +85,7 @@
 | [GITHUB_REPO_SETUP_GUIDE.md](05-github-and-growth/GITHUB_REPO_SETUP_GUIDE.md) | Repo name, description, topics, push |
 | [SEO_TOPICS_AND_DISCOVERABILITY.md](05-github-and-growth/SEO_TOPICS_AND_DISCOVERABILITY.md) | Search visibility checklist |
 | [ORG_PROFILE_CHECKLIST.md](05-github-and-growth/ORG_PROFILE_CHECKLIST.md) | Organization profile README |
+| [LINKEDIN_PAGE_GUIDE.md](05-github-and-growth/LINKEDIN_PAGE_GUIDE.md) | LinkedIn company page copy, assets, posts |
 
 ---
 

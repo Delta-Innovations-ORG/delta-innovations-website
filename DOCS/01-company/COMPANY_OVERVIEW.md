@@ -42,9 +42,9 @@ We turn business ideas into scalable digital products through clear requirements
 
 | Channel | URL |
 |---------|-----|
-| Website | https://deltainnovations.net/ |
+| Website (live) | https://delta-innovations-website.vercel.app |
 | GitHub | https://github.com/Delta-Innovations-ORG |
-| LinkedIn | https://www.linkedin.com/company/delta-innovations |
+| LinkedIn | https://www.linkedin.com/company/deltainnovations |
 
 ## Related docs
 

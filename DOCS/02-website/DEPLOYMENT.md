@@ -72,6 +72,13 @@ Open your project in [vercel.com/dashboard](https://vercel.com/dashboard):
 - **Ad-blockers:** After accepting cookies, uBlock/Brave may still block `/_vercel/insights/script.js` — that is client-side, not a site bug.
 - **Reset consent:** Clear `localStorage` key `delta_cookie_consent` or use browser site data clear to see the banner again.
 
+### Tawk.to live chat & CSP
+
+- **CSP:** `vercel.json` allows all Tawk domains (`embed.tawk.to`, `va.tawk.to`, `*.tawk.to`, WebSockets, chat audio, jsDelivr emojis). See [CSP_AND_THIRD_PARTIES.md](CSP_AND_THIRD_PARTIES.md).
+- **`log-performance` blocked (CORS or ERR_BLOCKED_BY_CLIENT):** Optional Tawk telemetry — **not** fixable from our site. Chat works when `POST …/v1/session/start` succeeds.
+- **Testing:** Use `npm run dev:api` locally so CSP headers match production. Disable uBlock/Brave Shields on your domain if the bubble does not appear.
+- **Details:** [TAWK_SETUP.md](TAWK_SETUP.md)
+
 ### Environment variables
 
 Add for **Production** and **Preview** (never commit values to git):
@@ -144,4 +151,6 @@ Opens the production build locally (Vite preview default port).
 
 - [Environment variables](ENVIRONMENT_VARIABLES.md)
 - [EmailJS setup](EMAILJS_SETUP.md)
+- [Tawk setup](TAWK_SETUP.md)
+- [CSP & third parties](CSP_AND_THIRD_PARTIES.md)
 - [Getting started](../03-development/GETTING_STARTED.md)
