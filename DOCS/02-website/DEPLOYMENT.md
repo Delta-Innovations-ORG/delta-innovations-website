@@ -100,6 +100,8 @@ See [ENVIRONMENT_VARIABLES.md](ENVIRONMENT_VARIABLES.md) and [EMAILJS_SETUP.md](
 
 After changing env vars on Vercel, trigger **Redeploy** on the latest production deployment (env changes do not apply to past deployments).
 
+**Clerk "development keys" console warning:** if production uses `pk_test_…` / `sk_test_…`, Clerk logs *"loaded with development keys… should not be used in production"*. It is harmless for a demo but to remove it: create/promote a **production instance** in the [Clerk dashboard](https://dashboard.clerk.com), then set `VITE_CLERK_PUBLISHABLE_KEY=pk_live_…` and `CLERK_SECRET_KEY=sk_live_…` in Vercel (Production) and redeploy.
+
 ### Marketplace API troubleshooting
 
 Symptoms on `/marketplace`: “Could not load projects”, or `/api/catalog/github` returns **500** / `FUNCTION_INVOCATION_FAILED`.
@@ -110,12 +112,12 @@ Symptoms on `/marketplace`: “Could not load projects”, or `/api/catalog/gith
 | `GITHUB_TOKEN` | Vercel → Settings → Environment Variables → add for **Production** and **Preview** → **Redeploy** |
 | Function logs | Vercel → Deployments → latest → **Functions** → select `/api/catalog/github` → read stack trace |
 | Local API dev | Use `npm run dev:api` (not `npm run dev`) so `/api/*` routes exist on port 3000 |
-| Dependencies | API routes need runtime packages in `dependencies` (`@vercel/node`, `dotenv`, `zod`) — not only `devDependencies` |
+| Dependencies | Runtime imports (`dotenv`, `zod`) must be in `dependencies`. `@vercel/node` is **type-only** (`import type { VercelRequest }`) and must stay in `devDependencies` — Vercel provides it as the platform runtime, so pinning a copy in `dependencies` can crash every function with `FUNCTION_INVOCATION_FAILED`. |
 
 Common log errors:
 
-- **`Cannot find module '@vercel/node'`** — ensure `@vercel/node` is in `dependencies` and redeploy.
-- **`Cannot find module 'dotenv'`** — ensure `dotenv` is in `dependencies` and redeploy.
+- **`FUNCTION_INVOCATION_FAILED` on every route (even `/api/sitemap.xml`)** — `@vercel/node` was added to `dependencies`; move it back to `devDependencies` and redeploy.
+- **`Cannot find module 'dotenv'`** — ensure `dotenv` is in `dependencies` (imported at runtime by `api/_lib/loadEnv.ts`) and redeploy.
 - **`Cannot find module .../src/content/marketplace`** — API code must not import from `src/`; config lives in `api/_lib/marketplaceConfig.ts`.
 - **`"warning": "GITHUB_TOKEN not configured"`** — token missing in Vercel env; add `GITHUB_TOKEN` and redeploy.
 
