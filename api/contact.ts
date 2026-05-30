@@ -4,7 +4,7 @@ import {
   getEmailJsConfig,
   getMissingEmailJsEnvKeys,
   isEmailJsConfigured,
-} from './_lib/loadEnv';
+} from './_lib/loadEnv.js';
 
 const contactSchema = z.object({
   name: z.string().min(1).max(200),

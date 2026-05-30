@@ -1,5 +1,5 @@
-import { marketplaceConfig } from './marketplaceConfig';
-import { getCached } from './memoryCache';
+import { marketplaceConfig } from './marketplaceConfig.js';
+import { getCached } from './memoryCache.js';
 
 type CatalogRepo = {
   slug: string;

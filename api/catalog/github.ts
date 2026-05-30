@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { marketplaceConfig } from '../_lib/marketplaceConfig';
-import { getGithubToken } from '../_lib/loadEnv';
-import { CACHE_TTL, getCached, setCached } from '../_lib/memoryCache';
-import { getClientIp, isRateLimited } from '../_lib/rateLimit';
+import { marketplaceConfig } from '../_lib/marketplaceConfig.js';
+import { getGithubToken } from '../_lib/loadEnv.js';
+import { CACHE_TTL, getCached, setCached } from '../_lib/memoryCache.js';
+import { getClientIp, isRateLimited } from '../_lib/rateLimit.js';
 
 type GithubApiRepo = {
   name: string;
