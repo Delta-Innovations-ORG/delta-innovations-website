@@ -84,15 +84,46 @@ Open your project in [vercel.com/dashboard](https://vercel.com/dashboard):
 Add for **Production** and **Preview** (never commit values to git):
 
 ```
+VITE_SITE_URL
+VITE_CLERK_PUBLISHABLE_KEY
+CLERK_SECRET_KEY
 VITE_EMAILJS_SERVICE_ID
 VITE_EMAILJS_TEMPLATE_ID
 VITE_EMAILJS_PUBLIC_KEY
-VITE_EMAILJS_PRIVATE_KEY
+EMAILJS_PRIVATE_KEY
+GITHUB_TOKEN
 ```
+
+**Marketplace requires `GITHUB_TOKEN`** in Vercel (Production + Preview). Without it, `/api/catalog/github` returns an empty list with a warning — not a crash.
 
 See [ENVIRONMENT_VARIABLES.md](ENVIRONMENT_VARIABLES.md) and [EMAILJS_SETUP.md](EMAILJS_SETUP.md).
 
-After changing env vars on Vercel, trigger **Redeploy** on the latest production deployment.
+After changing env vars on Vercel, trigger **Redeploy** on the latest production deployment (env changes do not apply to past deployments).
+
+### Marketplace API troubleshooting
+
+Symptoms on `/marketplace`: “Could not load projects”, or `/api/catalog/github` returns **500** / `FUNCTION_INVOCATION_FAILED`.
+
+| Check | Action |
+|-------|--------|
+| API health | Open `https://<your-domain>/api/catalog/github` — expect JSON with `"repos": [...]`, not an HTML error page |
+| `GITHUB_TOKEN` | Vercel → Settings → Environment Variables → add for **Production** and **Preview** → **Redeploy** |
+| Function logs | Vercel → Deployments → latest → **Functions** → select `/api/catalog/github` → read stack trace |
+| Local API dev | Use `npm run dev:api` (not `npm run dev`) so `/api/*` routes exist on port 3000 |
+| Dependencies | API routes need runtime packages in `dependencies` (`@vercel/node`, `dotenv`, `zod`) — not only `devDependencies` |
+
+Common log errors:
+
+- **`Cannot find module '@vercel/node'`** — ensure `@vercel/node` is in `dependencies` and redeploy.
+- **`Cannot find module 'dotenv'`** — ensure `dotenv` is in `dependencies` and redeploy.
+- **`Cannot find module .../src/content/marketplace`** — API code must not import from `src/`; config lives in `api/_lib/marketplaceConfig.ts`.
+- **`"warning": "GITHUB_TOKEN not configured"`** — token missing in Vercel env; add `GITHUB_TOKEN` and redeploy.
+
+Verify after fix:
+
+1. `GET /api/catalog/github` → `200` with `"repos": [...]`
+2. `/marketplace` loads project cards (hard refresh / incognito)
+3. `/marketplace/<slug>` loads README content
 
 ### Optional: gate production on CI
 
