@@ -18,7 +18,7 @@ export const siteConfig = {
   },
   locations: ['Pakistan', 'Egypt'],
   social: {
-    linkedin: 'https://www.linkedin.com/company/delta-innovations',
+    linkedin: 'https://www.linkedin.com/company/deltainnovations',
     github: 'https://github.com/Delta-Innovations-ORG',
   },
 };
@@ -27,6 +27,23 @@ export const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
   { name: 'Services', path: '/services' },
+  { name: 'Marketplace', path: '/marketplace' },
+  { name: 'Insights', path: '/insights' },
+  { name: 'Team', path: '/team' },
+  { name: 'Contact', path: '/contact' },
+];
+
+export const footerProductLinks = [
+  { name: 'Marketplace', path: '/marketplace' },
+  { name: 'Web Development', path: '/services' },
+  { name: 'Client Reviews', path: '/reviews' },
+  { name: 'GitHub Organization', path: 'https://github.com/Delta-Innovations-ORG', external: true },
+];
+
+export const footerCompanyLinks = [
+  { name: 'About', path: '/about' },
+  { name: 'Team', path: '/team' },
+  { name: 'Insights', path: '/insights' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -39,6 +56,7 @@ export const footerPolicyLinks = [
   { name: 'Code of Conduct', path: '/code-of-conduct' },
   { name: 'Change Requests', path: '/change-requests' },
   { name: 'Project Requirements', path: '/requirements' },
+  { name: 'Workplace Policy', path: '/workplace-policy' },
 ];
 
 export const heroContent = {
@@ -47,7 +65,7 @@ export const heroContent = {
   description:
     'Delta Innovations helps startups and businesses design, build, deploy, and scale web, mobile, AI, cloud, data, DevOps, and cybersecurity solutions.',
   primaryCta: { label: 'Start Your Project', path: '/contact' },
-  secondaryCta: { label: 'Discuss Requirements', path: '/requirements' },
+  secondaryCta: { label: 'Browse Marketplace', path: '/marketplace' },
 };
 
 export const trustBarItems = [

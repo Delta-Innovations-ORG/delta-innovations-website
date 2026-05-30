@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Package } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { siteConfig } from '../../content/siteConfig';
 import { toWhatsAppUrl } from '../../utils/phone';
@@ -32,7 +32,8 @@ export function CtaSection() {
           transition={{ delay: 0.1 }}
           className="text-brand-muted text-lg mb-4 leading-relaxed"
         >
-          Share your requirements and we will respond with a clear scope, timeline, and proposal.
+          Share your requirements for a custom build, or explore our marketplace for starter kits
+          and integration packs.
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
@@ -52,6 +53,10 @@ export function CtaSection() {
         >
           <Button to="/contact" size="lg" className="hover-border-trace">
             Start Your Project
+          </Button>
+          <Button to="/marketplace" variant="secondary" size="lg" className="hover-border-trace">
+            <Package size={18} />
+            Browse Marketplace
           </Button>
           <Button href={whatsappUrl} variant="outline" size="lg" className="hover-border-trace">
             <MessageCircle size={18} />

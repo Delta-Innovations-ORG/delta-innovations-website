@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Show } from '@clerk/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { navLinks, siteConfig } from '../../content/siteConfig';
 import { Button } from '../ui/Button';
+import { UserMenu } from './UserMenu';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +14,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -24,6 +26,28 @@ export function Navbar() {
     `nav-link-hover text-sm font-medium transition-colors duration-200 ${
       isActive ? 'text-brand-cyan active' : 'text-brand-muted hover:text-brand-cyan'
     }`;
+
+  const authControls = (
+    <div className="flex items-center gap-2">
+      <Show when="signed-out">
+        <Link
+          to="/sign-in"
+          className="text-sm font-medium text-brand-muted hover:text-brand-cyan transition-colors px-2 py-1"
+        >
+          Sign in
+        </Link>
+        <Link
+          to="/sign-up"
+          className="text-sm font-medium text-brand-cyan hover:text-brand-emeraldLight transition-colors px-2 py-1"
+        >
+          Sign up
+        </Link>
+      </Show>
+      <Show when="signed-in">
+        <UserMenu />
+      </Show>
+    </div>
+  );
 
   return (
     <motion.nav
@@ -53,12 +77,13 @@ export function Navbar() {
           </div>
         </Link>
 
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link) => (
             <NavLink key={link.path} to={link.path} className={navClass}>
               {link.name}
             </NavLink>
           ))}
+          {authControls}
           <Button to="/contact" size="sm">
             Start Your Project
           </Button>
@@ -93,6 +118,7 @@ export function Navbar() {
                   {link.name}
                 </NavLink>
               ))}
+              <div className="flex items-center gap-3 py-2">{authControls}</div>
               <Button to="/contact" size="sm" className="mt-2 w-full">
                 Start Your Project
               </Button>

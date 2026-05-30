@@ -14,7 +14,13 @@ function lerp(current: number, target: number, factor: number) {
 
 export function resolveCursorMode(el: Element | null): CursorMode {
   if (!el) return 'default';
-  if (el.closest('[data-cursor="none"]')) return 'default';
+  if (
+    el.closest(
+      '[data-cursor="none"], #tawk-bubble-container, .tawk-min-container, .tawk-max-container',
+    )
+  ) {
+    return 'default';
+  }
 
   if (
     el.closest(
@@ -66,6 +72,8 @@ export function useDeltaCursorController() {
   const pendingHitTestRef = useRef(false);
   const hitTestFrameSkipRef = useRef(0);
   const modeRef = useRef<CursorMode>('default');
+  const scrollingRef = useRef(false);
+  const scrollEndTimerRef = useRef<number>(0);
 
   useEffect(() => {
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -101,6 +109,13 @@ export function useDeltaCursorController() {
   }, []);
 
   const tick = useCallback(() => {
+    if (scrollingRef.current) {
+      applyCursorTransform(mainElRef.current, mainRef.current.x, mainRef.current.y, 0);
+      applyCursorTransform(trailElRef.current, trailRef.current.x, trailRef.current.y, 0);
+      rafRef.current = requestAnimationFrame(tick);
+      return;
+    }
+
     const factor = reducedMotionRef.current ? LERP_MAIN_REDUCED : LERP_MAIN;
     const trailFactor = reducedMotionRef.current ? LERP_MAIN_REDUCED : LERP_TRAIL;
 
@@ -137,6 +152,8 @@ export function useDeltaCursorController() {
     ).matches;
 
     const onMove = (e: MouseEvent) => {
+      if (scrollingRef.current) return;
+
       const x = e.clientX;
       const y = e.clientY;
       targetRef.current = { x, y };
@@ -158,14 +175,26 @@ export function useDeltaCursorController() {
       visibleRef.current = false;
     };
 
+    const onScroll = () => {
+      scrollingRef.current = true;
+      visibleRef.current = false;
+      window.clearTimeout(scrollEndTimerRef.current);
+      scrollEndTimerRef.current = window.setTimeout(() => {
+        scrollingRef.current = false;
+      }, 120);
+    };
+
     window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     document.documentElement.addEventListener('mouseleave', onDocumentLeave);
 
     rafRef.current = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('scroll', onScroll);
       document.documentElement.removeEventListener('mouseleave', onDocumentLeave);
+      window.clearTimeout(scrollEndTimerRef.current);
       cancelAnimationFrame(rafRef.current);
     };
   }, [enabled, tick, runHitTest]);

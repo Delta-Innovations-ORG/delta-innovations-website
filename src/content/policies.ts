@@ -279,12 +279,13 @@ export const cookiePolicy: PolicyPage = {
         'Essential cookies required for basic site functionality',
         'Analytics cookies (Vercel Web Analytics and Speed Insights) load only after you click Accept on the cookie banner',
         'Preference cookies to remember your settings, including your analytics consent choice',
+        'Tawk.to live chat loads on every visit to help you reach our team (functional service, not tied to analytics consent)',
       ],
     },
     {
       title: 'Third-Party Cookies',
       content:
-        'If you accept analytics, Vercel may set cookies or use similar technologies to measure traffic and performance. Declining analytics prevents those scripts from loading. Embedded content from other providers may set their own cookies subject to their privacy policies.',
+        'If you accept analytics, Vercel may set cookies or use similar technologies to measure traffic and performance. Tawk.to live chat may set cookies to maintain your conversation session; it loads regardless of analytics consent. Declining analytics prevents Vercel analytics scripts from loading. Embedded content from other providers may set their own cookies subject to their privacy policies.',
     },
     {
       title: 'Managing Cookies',
@@ -294,6 +295,44 @@ export const cookiePolicy: PolicyPage = {
     {
       title: 'Contact',
       content: 'For questions about this Cookie Policy, contact daltainnovations.co@gmail.com',
+    },
+  ],
+};
+
+export const workplacePolicy: PolicyPage = {
+  title: 'Workplace Policy',
+  description: 'How Delta Innovations supports a respectful, safe, and inclusive workplace for team members and collaborators.',
+  effectiveDate: '2025',
+  sections: [
+    {
+      title: 'Equal Opportunity',
+      content:
+        'Delta Innovations is committed to equal opportunity in employment and collaboration. We do not discriminate based on race, color, religion, gender, national origin, age, disability, or any other protected characteristic.',
+    },
+    {
+      title: 'Remote and Hybrid Work',
+      content:
+        'Our team operates across Pakistan and Egypt with flexible remote and hybrid arrangements. Clear communication, documented requirements, and reliable delivery remain expectations regardless of work location.',
+    },
+    {
+      title: 'Code of Conduct',
+      content:
+        'All team members and contractors must follow our Code of Conduct. Professional behavior, respect for colleagues and clients, and ethical engineering practices are required at all times.',
+    },
+    {
+      title: 'Harassment and Discrimination',
+      content:
+        'Harassment, bullying, discrimination, or retaliation will not be tolerated. Reports are taken seriously and handled confidentially where possible.',
+    },
+    {
+      title: 'Health and Safety',
+      content:
+        'We encourage sustainable work practices, reasonable hours, and a safe working environment whether working remotely or on site.',
+    },
+    {
+      title: 'Reporting',
+      content:
+        'To report workplace concerns, contact daltainnovations.co@gmail.com or insider.daltainnovations@gmail.com. We will review reports promptly and take appropriate action.',
     },
   ],
 };

@@ -1,15 +1,14 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { Outlet } from 'react-router-dom';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { PageBackBar } from '../components/ui/PageBackBar';
 import { ScrollToTop } from '../components/layout/ScrollToTop';
 import { DeltaCursor } from '../components/cursor/DeltaCursor';
 import { SeoStructuredData } from '../components/seo/SeoStructuredData';
 import { useSeo } from '../hooks/useSeo';
 
 export function MainLayout() {
-  const location = useLocation();
   useSeo();
 
   return (
@@ -18,18 +17,9 @@ export function MainLayout() {
       <DeltaCursor />
       <ScrollToTop />
       <Navbar />
+      <PageBackBar />
       <main className="flex-1">
-        <AnimatePresence mode="sync">
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-          >
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
+        <Outlet />
       </main>
       <Footer />
     </div>

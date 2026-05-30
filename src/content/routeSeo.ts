@@ -76,6 +76,44 @@ export const routeSeo: Record<string, RouteSeoMeta> = {
     description: 'Code of Conduct for Delta Innovations team members, collaborators, and professional engagements.',
     noindex: true,
   },
+  '/workplace-policy': {
+    title: 'Workplace Policy | Delta Innovations',
+    description:
+      'Workplace policy for Delta Innovations — equal opportunity, remote work, health and safety, and reporting procedures.',
+    noindex: true,
+  },
+  '/marketplace': {
+    title: 'Marketplace | Delta Innovations',
+    description: 'Browse digital products and project solutions from Delta Innovations. Contact us for access to private repositories.',
+    keywords: 'software marketplace, digital products, Delta Innovations catalog',
+  },
+  '/team': {
+    title: 'Our Team | Delta Innovations',
+    description: 'Meet the Pakistan and Egypt-based engineering team behind Delta Innovations.',
+  },
+  '/reviews': {
+    title: 'Client Reviews | Delta Innovations',
+    description: 'Client feedback and testimonials from projects delivered by Delta Innovations.',
+  },
+  '/insights': {
+    title: 'Insights | Delta Innovations',
+    description: 'Engineering articles on requirements, security, and delivery from Delta Innovations.',
+  },
+  '/sign-in': {
+    title: 'Sign In | Delta Innovations',
+    description: 'Sign in to your Delta Innovations account.',
+    noindex: true,
+  },
+  '/sign-up': {
+    title: 'Get Started | Delta Innovations',
+    description: 'Create your Delta Innovations account.',
+    noindex: true,
+  },
+  '/account': {
+    title: 'Account | Delta Innovations',
+    description: 'Manage your Delta Innovations account and subscription status.',
+    noindex: true,
+  },
 };
 
 export const defaultRouteSeo: RouteSeoMeta = {

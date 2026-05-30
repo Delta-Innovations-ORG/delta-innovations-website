@@ -20,6 +20,7 @@ export default {
           roseLight: '#FB7185',
           light: '#F8FAFC',
           muted: '#94A3B8',
+          mutedLight: '#CBD5E1',
         },
       },
       fontFamily: {

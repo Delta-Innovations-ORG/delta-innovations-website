@@ -112,7 +112,7 @@
     opacity: 1;
   }
 
-  .hover-glow-card > * {
+  .hover-glow-card > *:not(.absolute) {
     position: relative;
     z-index: 1;
   }
@@ -565,6 +565,326 @@
 
   .phone-input-dark .PhoneInputCountrySelectArrow {
     @apply opacity-60 border-brand-muted;
+  }
+
+  .markdown-prose {
+    @apply text-brand-mutedLight leading-relaxed text-sm md:text-base;
+  }
+
+  .markdown-prose h1,
+  .markdown-prose h2,
+  .markdown-prose h3,
+  .markdown-prose h4 {
+    @apply text-brand-light font-display font-bold mt-8 mb-3;
+  }
+
+  .markdown-prose h1 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  .markdown-prose h2 {
+    @apply text-xl md:text-2xl border-b border-brand-cyan/20 pb-2;
+  }
+
+  .markdown-prose h3 {
+    @apply text-lg md:text-xl;
+  }
+
+  .markdown-prose p {
+    @apply mb-4;
+  }
+
+  .markdown-prose a {
+    @apply text-brand-cyan hover:text-brand-emeraldLight underline underline-offset-2;
+  }
+
+  .markdown-prose ul,
+  .markdown-prose ol {
+    @apply mb-4 pl-6 space-y-1;
+  }
+
+  .markdown-prose ul {
+    @apply list-disc;
+  }
+
+  .markdown-prose ol {
+    @apply list-decimal;
+  }
+
+  .markdown-prose li {
+    @apply text-brand-mutedLight;
+  }
+
+  .markdown-prose code {
+    @apply px-1.5 py-0.5 rounded bg-brand-navyCard text-brand-cyan text-[0.9em] font-mono;
+  }
+
+  .markdown-prose pre {
+    @apply mb-4 p-4 rounded-xl bg-brand-navyCard border border-brand-cyan/15 overflow-x-auto;
+  }
+
+  .markdown-prose pre code {
+    @apply p-0 bg-transparent text-brand-light text-sm;
+  }
+
+  .markdown-prose blockquote {
+    @apply border-l-4 border-brand-cyan/40 pl-4 italic text-brand-muted mb-4;
+  }
+
+  .markdown-prose img {
+    @apply rounded-xl max-w-full h-auto my-4 border border-brand-cyan/15;
+  }
+
+  .markdown-prose table {
+    @apply w-full mb-4 text-sm border-collapse;
+  }
+
+  .markdown-prose th,
+  .markdown-prose td {
+    @apply border border-brand-cyan/20 px-3 py-2 text-left;
+  }
+
+  .markdown-prose th {
+    @apply bg-brand-navyCard text-brand-light font-semibold;
+  }
+
+  .markdown-prose hr {
+    @apply my-8 border-brand-cyan/20;
+  }
+
+  #tawk-bubble-container,
+  .tawk-min-container,
+  .tawk-max-container,
+  .tawk-maximize-container {
+    z-index: 100000 !important;
+  }
+
+  .cl-rootBox,
+  .cl-modalContent,
+  .cl-card {
+    color-scheme: dark;
+  }
+
+  /* Text inputs, phone, country select — clearly visible field with a
+     distinct dark inset and a strong cyan border against the card. */
+  .cl-formFieldInput,
+  .cl-phoneInputBox,
+  .cl-selectButton {
+    background-color: #0b1a30 !important;
+    color: #f1f5f9 !important;
+    border: 1.5px solid rgba(56, 189, 248, 0.5) !important;
+    border-radius: 0.625rem !important;
+  }
+
+  .cl-formFieldInput::placeholder {
+    color: #7c8aa0 !important;
+  }
+
+  .cl-formFieldInput:hover,
+  .cl-phoneInputBox:hover,
+  .cl-selectButton:hover {
+    border-color: rgba(56, 189, 248, 0.7) !important;
+  }
+
+  .cl-formFieldInput:focus,
+  .cl-phoneInputBox:focus-within,
+  .cl-selectButton:focus {
+    border-color: #22d3ee !important;
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.3) !important;
+    outline: none !important;
+  }
+
+  /* One-time-code cells: bright, unmistakable boxes (default render was
+     invisible). Style ONLY the visible cell; do NOT touch sizing/opacity so
+     Clerk's hidden capture input keeps working. */
+  .cl-otpCodeFieldInput {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    border: 2px solid #fbbf24 !important;
+    border-radius: 0.625rem !important;
+    caret-color: #fbbf24 !important;
+    font-weight: 600 !important;
+  }
+
+  .cl-otpCodeFieldInput:focus {
+    border-color: #fcd34d !important;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.35) !important;
+    outline: none !important;
+  }
+
+  /* Browser autofill forces a light box; force it back to dark navy. */
+  .cl-formFieldInput:-webkit-autofill,
+  .cl-formFieldInput:-webkit-autofill:hover,
+  .cl-formFieldInput:-webkit-autofill:focus,
+  .cl-formFieldInput:-webkit-autofill:active {
+    -webkit-text-fill-color: #f1f5f9 !important;
+    -webkit-box-shadow: 0 0 0 1000px #0b1a30 inset !important;
+    box-shadow: 0 0 0 1000px #0b1a30 inset !important;
+    caret-color: #f1f5f9 !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  /* Labels and helper text. */
+  .cl-formFieldLabel,
+  .cl-formFieldLabelRow {
+    color: #f1f5f9 !important;
+  }
+
+  .cl-identityPreviewText,
+  .cl-formFieldInfoText,
+  .cl-formFieldHintText {
+    color: #cbd5e1 !important;
+  }
+
+  /* Status text (was low-contrast orange on navy). */
+  .cl-formFieldErrorText,
+  .cl-formFieldWarningText {
+    color: #fbbf24 !important;
+  }
+
+  .cl-formFieldSuccessText {
+    color: #34d399 !important;
+  }
+
+  /* Headings and descriptions. */
+  .cl-headerTitle,
+  .cl-formHeaderTitle {
+    color: #f1f5f9 !important;
+  }
+
+  .cl-headerSubtitle,
+  .cl-formHeaderSubtitle {
+    color: #94a3b8 !important;
+  }
+
+  /* Links and actions (forgot password, resend, footer, edit). */
+  .cl-footerActionLink,
+  .cl-formFieldAction,
+  .cl-formResendCodeLink,
+  .cl-identityPreviewEditButton,
+  .cl-alternativeMethodsBlockButton__link {
+    color: #22d3ee !important;
+  }
+
+  .cl-footerActionLink:hover,
+  .cl-formFieldAction:hover,
+  .cl-formResendCodeLink:hover,
+  .cl-identityPreviewEditButton:hover {
+    color: #34d399 !important;
+  }
+
+  .cl-footerActionText {
+    color: #94a3b8 !important;
+  }
+
+  /* Footer / "Secured by Clerk" badge — was nearly black on dark. */
+  .cl-footer,
+  .cl-footer *,
+  .cl-footerPages,
+  .cl-footerPagesLink,
+  .cl-internal-piyvrh,
+  [class*="cl-footer"] {
+    color: #94a3b8 !important;
+  }
+
+  .cl-footerPagesLink:hover {
+    color: #22d3ee !important;
+  }
+
+  /* Divider between social and form. */
+  .cl-dividerText {
+    color: #94a3b8 !important;
+  }
+
+  .cl-dividerLine {
+    background-color: rgba(34, 211, 238, 0.18) !important;
+  }
+
+  /* Show/hide password button. */
+  .cl-formFieldInputShowPasswordButton {
+    color: #22d3ee !important;
+  }
+
+  /* Social / alternative method buttons. */
+  .cl-socialButtonsBlockButton,
+  .cl-alternativeMethodsBlockButton {
+    background-color: #0b1a30 !important;
+    border: 1.5px solid rgba(56, 189, 248, 0.4) !important;
+    color: #f1f5f9 !important;
+  }
+
+  .cl-socialButtonsBlockButton:hover,
+  .cl-alternativeMethodsBlockButton:hover {
+    background-color: rgba(34, 211, 238, 0.1) !important;
+    border-color: rgba(34, 211, 238, 0.6) !important;
+  }
+
+  .cl-socialButtonsBlockButtonText,
+  .cl-alternativeMethodsBlockButtonText {
+    color: #f1f5f9 !important;
+  }
+
+  .cl-modalBackdrop {
+    background-color: rgba(10, 22, 40, 0.85) !important;
+  }
+
+  /* ---------- UserProfile / account-manager modal: make every label and
+     value readable on the dark theme (defaults were dark-on-dark). ---------- */
+  .cl-pageScrollBox,
+  .cl-profilePage,
+  .cl-profileSection {
+    background-color: transparent !important;
+  }
+
+  /* Section titles + primary identifiers (Profile, Email addresses, …). */
+  .cl-profileSectionTitleText,
+  .cl-profileSectionTitle,
+  .cl-accordionTriggerButton,
+  .cl-userPreviewMainIdentifier,
+  .cl-menuButton,
+  .cl-tableHead,
+  .cl-navbarButton,
+  .cl-profilePage .cl-headerTitle,
+  .cl-breadcrumbsItem--currentPage {
+    color: #f1f5f9 !important;
+  }
+
+  /* Secondary values (email text, descriptions, table cells). */
+  .cl-profileSectionContent,
+  .cl-profileSectionContent p,
+  .cl-profileSectionContent span,
+  .cl-profileSectionItem,
+  .cl-userPreviewSecondaryIdentifier,
+  .cl-formFieldRow,
+  .cl-tableBody,
+  .cl-breadcrumbsItem {
+    color: #cbd5e1 !important;
+  }
+
+  /* Action buttons inside the manager (Update profile, Add email, Connect…). */
+  .cl-profileSectionPrimaryButton,
+  .cl-profileSectionPrimaryButton *,
+  .cl-menuItem,
+  .cl-navbarButton__active {
+    color: #22d3ee !important;
+  }
+
+  .cl-profileSectionPrimaryButton:hover {
+    color: #34d399 !important;
+  }
+
+  /* Badges (e.g. "Primary"). */
+  .cl-badge {
+    background-color: rgba(34, 211, 238, 0.12) !important;
+    color: #67e8f9 !important;
+  }
+
+  /* Avatar change controls stay hidden — the icon is auto-generated. */
+  .cl-avatarImageActionsUpload,
+  .cl-avatarImageActionsRemove,
+  .cl-fileDropAreaButtonPrimary,
+  .cl-fileDropAreaBox {
+    display: none !important;
   }
 }
 

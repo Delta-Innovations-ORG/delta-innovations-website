@@ -25,7 +25,7 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
         }`}
       >
         {service.comingSoon && (
-          <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-brand-emerald/20 text-brand-emeraldLight border border-brand-emerald/30">
+          <span className="absolute top-4 right-4 z-20 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-brand-emerald/20 text-brand-emeraldLight border border-brand-emerald/30">
             <Clock size={12} />
             Coming Soon
           </span>
