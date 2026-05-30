@@ -9,6 +9,18 @@ type CatalogResponse = {
   error?: string;
 };
 
+function catalogErrorMessage(status: number, data?: CatalogResponse): string {
+  if (data?.warning === 'GITHUB_TOKEN not configured') {
+    return 'GITHUB_TOKEN is not configured on the server.';
+  }
+  if (data?.error) return data.error;
+  if (status === 429) return 'Too many requests. Please try again in a few minutes.';
+  if (status >= 500) {
+    return 'The project catalog API is unavailable. Redeploy after setting server env vars in Vercel.';
+  }
+  return 'Failed to load projects.';
+}
+
 export function GithubCatalogProvider({ children }: { children: React.ReactNode }) {
   const initialCached = getCachedCatalog();
   const [repos, setRepos] = useState<MarketplaceRepo[]>(initialCached ?? []);
@@ -31,7 +43,13 @@ export function GithubCatalogProvider({ children }: { children: React.ReactNode 
       }
       if (!res) throw new Error('network');
 
-      const data = (await res.json()) as CatalogResponse;
+      let data: CatalogResponse = { repos: [] };
+      try {
+        data = (await res.json()) as CatalogResponse;
+      } catch {
+        setError(catalogErrorMessage(res.status));
+        return;
+      }
 
       if (data.warning) setWarning(data.warning);
       if (data.error) {
@@ -40,7 +58,7 @@ export function GithubCatalogProvider({ children }: { children: React.ReactNode 
       }
 
       if (!res.ok) {
-        setError('Failed to load projects.');
+        setError(catalogErrorMessage(res.status, data));
         return;
       }
 
@@ -49,7 +67,14 @@ export function GithubCatalogProvider({ children }: { children: React.ReactNode 
       setCachedCatalog(list);
       setError(null);
     } catch {
-      setError('Unable to reach the project catalog. Use npm run dev:api for local API routes.');
+      const isLocalhost =
+        typeof window !== 'undefined' &&
+        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      setError(
+        isLocalhost
+          ? 'Unable to reach the project catalog. Use npm run dev:api for local API routes.'
+          : 'Unable to reach the project catalog. Confirm Vercel API routes are deployed and GITHUB_TOKEN is set.',
+      );
     } finally {
       setLoading(false);
     }

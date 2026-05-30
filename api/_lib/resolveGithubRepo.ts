@@ -1,4 +1,4 @@
-import { marketplaceConfig } from '../../src/content/marketplace';
+import { marketplaceConfig } from './marketplaceConfig';
 import { getCached } from './memoryCache';
 
 type CatalogRepo = {

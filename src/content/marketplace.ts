@@ -1,21 +1,9 @@
-export const marketplaceConfig = {
-  githubUsername: 'sureshbarach2001',
-  excludeRepos: ['Portfolio-Orbital-Movement'],
-  defaultSort: 'stars' as const,
-};
+import {
+  marketplaceConfig,
+  type MarketplaceRepo,
+} from '../../api/_lib/marketplaceConfig';
 
-export type MarketplaceRepo = {
-  slug: string;
-  name: string;
-  fullName: string;
-  description: string | null;
-  language: string | null;
-  stars: number;
-  forks: number;
-  openIssues: number;
-  updatedAt: string;
-  topics: string[];
-};
+export { marketplaceConfig, type MarketplaceRepo };
 
 export function repoSlug(name: string): string {
   return name.toLowerCase();

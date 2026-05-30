@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { marketplaceConfig } from '../../src/content/marketplace';
+import { marketplaceConfig } from '../_lib/marketplaceConfig';
 import { getGithubToken } from '../_lib/loadEnv';
 import { CACHE_TTL, getCached, setCached } from '../_lib/memoryCache';
 import { getClientIp, isRateLimited } from '../_lib/rateLimit';
